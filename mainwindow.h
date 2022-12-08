@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    int glob = 0;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QVector <QString> types = {"RGB","XYZ","LAB","CMYK","HLS","HSV"};
@@ -34,6 +35,7 @@ public:
     QString checkcolor(int row,int column, QString changed);
     int cellslide = 0;
     void warning();
+    bool checkletter(QString str);
 
 private slots:
     void on_actionOpen_palette_triggered();

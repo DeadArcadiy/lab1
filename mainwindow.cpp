@@ -374,6 +374,22 @@ QString MainWindow::checkcolor(int row,int column, QString changed)
         return changed;
     }
 
+bool MainWindow::checkletter(QString str)
+{
+    if(glob == 0)
+        glob++;
+    else
+    for(int i = 0; i < str.size();i++)
+    {
+        if(!str[i].isDigit())
+        {
+            QMessageBox::about(this,"","Something wrong");
+            return false;
+        }
+    }
+    return true;
+}
+
 void MainWindow::on_actionOpen_palette_triggered()
 {
     color = QColorDialog::getColor(Qt::black,this,"Pick color");
@@ -382,31 +398,55 @@ void MainWindow::on_actionOpen_palette_triggered()
 
 void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
 {
+    if((arg1 == ui->comboBox->currentText() || arg1 == ui->comboBox_3->currentText() ) && arg1 != "RGB")
+    {
+        ui->comboBox_2->setCurrentIndex(0);
+    }
+    else
+    {
     second = convert.conv(color,arg1);
     warning();
     colum_two();
+    }
 }
 
 void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 {
+    if((arg1 == ui->comboBox_2->currentText() || arg1 == ui->comboBox_3->currentText() ) && arg1 != "RGB")
+    {
+        ui->comboBox->setCurrentIndex(0);
+    }
+    else
+    {
     first = convert.conv(color,arg1);
     warning();
     colum_one();
+    }
 }
 
 void MainWindow::on_comboBox_3_currentIndexChanged(const QString &arg1)
 {
+    if((arg1 == ui->comboBox->currentText() || arg1 == ui->comboBox_2->currentText() ) && arg1 != "RGB")
+    {
+        ui->comboBox_3->setCurrentIndex(0);
+    }
+    else
+    {
     third = convert.conv(color,arg1);
     warning();
     colum_three();
+    }
 }
 
 void MainWindow::on_one_one_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 11;
     ui->one_one->setText(checkcolor(1,1,arg1));
     color = callconv(1);
     changecolor(1);
+    }
 }
 
 QColor MainWindow::callconv(int i)
@@ -428,90 +468,123 @@ QColor MainWindow::callconv(int i)
 
 void MainWindow::on_one_two_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 12;
     ui->one_two->setText(checkcolor(2,1,arg1));
     color = callconv(1);
     changecolor(1);
+    }
 }
 
 void MainWindow::on_one_three_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 13;
     ui->one_three->setText(checkcolor(3,1,arg1));
     color = callconv(1);
     changecolor(1);
+    }
 }
 
 void MainWindow::on_one_four_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 14;
     ui->one_four->setText(checkcolor(4,1,arg1));
     color = callconv(1);
     changecolor(1);
+    }
 }
 
 void MainWindow::on_two_one_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 21;
     ui->two_one->setText(checkcolor(1,1,arg1));
     color = callconv(2);
     changecolor(2);
+    }
 }
 
 void MainWindow::on_two_two_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 22;
     ui->two_two->setText(checkcolor(2,2,arg1));
     color = callconv(2);
     changecolor(2);
+    }
 }
 
 void MainWindow::on_two_three_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 23;
     ui->two_three->setText(checkcolor(3,2,arg1));
     color = callconv(2);
     changecolor(2);
+    }
 }
 
 void MainWindow::on_two_four_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 24;
     ui->two_four->setText(checkcolor(4,2,arg1));
     color = callconv(2);
     changecolor(2);
+    }
 }
 
 void MainWindow::on_three_one_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 31;
     ui->three_one->setText(checkcolor(1,3,arg1));
     color = callconv(3);
     changecolor(3);
+    }
 }
 
 void MainWindow::on_three_two_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 32;
     ui->three_two->setText(checkcolor(2,3,arg1));
     color =callconv(3);
     changecolor(3);
+    }
 }
 
 void MainWindow::on_three_three_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 33;
     ui->three_three->setText(checkcolor(3,3,arg1));
     color = callconv(3);
     changecolor(3);
+    }
 }
 
 void MainWindow::on_three_four_textEdited(const QString &arg1)
 {
+    if(checkletter(arg1))
+    {
     cellslide = 34;
     ui->three_four->setText(checkcolor(4,3,arg1));
     color = callconv(3);
     changecolor(3);
+    }
 }
 
 void MainWindow::on_horizontalSlider_sliderMoved(int position)
